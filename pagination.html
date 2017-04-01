@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="c1">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+   <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+    .myPage {
+        position: relative;
+    }
+    
+    .myPage .viewTool {
+        height: 24px;
+        margin: 9px auto;
+        text-align: center;
+    }
+    
+    .myPage .viewTool .right1 a {
+        border-radius: 12px;
+        color: #000;
+        display: inline-block;
+        line-height: 24px;
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid #9c9ea5;
+        margin-right: 5px;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .myPage .viewTool .right1 a:hover {
+        border-color: #f7bc1a;
+        background-color: #9461ca;
+        color: #fff;
+    }
+    
+    .myPage .viewTool .right1 {
+        z-index: 98;
+    }
+    
+    .myPage .viewTool .right1 a.down {
+        background-position: 50px center;
+        background-repeat: no-repeat;
+        width: 67px;
+    }
+    
+    .myPage .viewTool .right1 a.down:hover {
+        border-color: #9c9ea5;
+    }
+    
+    .myPage .pageBar1.up {
+        bottom: 25px;
+        position: absolute;
+        right: 50%;
+        margin-right: -31.5px;
+    }
+    
+    .myPage .pageBar1 {
+        background-color: #fff;
+        border: 1px solid #9c9ea5;
+        border-radius: 3px;
+        max-height: 500px;
+        overflow-y: auto;
+        width: 67px;
+        z-index: 99;
+    }
+    
+    .myPage .pageBar1 a {
+        color: #808080;
+        display: block;
+        font-size: 14px;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        text-decoration: none;
+    }
+    
+    .myPage .pageBar1 a.active {
+        background-color: #9461ca;
+        color: #fff;
+    }
+    
+    .myPage a:link {
+        color: #111;
+        text-decoration: none;
+    }
+    </style>
+    <script type="text/ng-template" id="tp1">
+        <div class='myPage'>
+            <div class='viewTool'><span class='right1'><a  ng-class='{prew:disabled}' ng-click='prew()'><</a><a class='down' ng-click='toggle()' >{{page}}</a><a  ng-class='{next:disabled}' ng-click='next()'>></a></span></div>
+            <div class='pageBar1 bar up iList' ng-hide='showMe'><a ng-repeat='item in items' ng-click='setValue(item)' ng-class='{active:showFlag2}' ng-mouseenter='showFlag2 = true' ng-mouseleave='showFlag2 = false'>{{item}}</a></div>
+        </div>
+    </script>
+</head>
+
+<body ng-controller="c1">
+    <div style="height: 300px"></div>
+    <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
+    <my-page num={{num1}} on-page-change="onPageChange1(name)"></my-page>
+    <script>
+    var app = angular.module("c1", []);
+    app.controller('c1', function($scope, $templateCache) {
+        $scope.num = 10;
+        $scope.onPageChange = function(name) {
+            // alert(name);
+            //name为当前页码
+        };
+
+        $scope.num1 = 10;
+        $scope.onPageChange1 = function(name) {
+            // alert(name);
+            // name为当前页码
+        };
+    });
+
+    app.directive('myPage', function() {
+        return {
+            restrict: 'EA',
+            // replace: true,
+            transclude: true,
+            scope: {
+                num: '@',
+                onPageChange: '&'
+            },
+            // template: "<div class='myPage'><div class='viewTool'>" + "<span class='right1'>" + "<a  ng-class='{prew:disabled}' ng-click='prew()'><</a>" + "<a class='down' ng-click='toggle()' >{{page}}</a>" + "<a  ng-class='{next:disabled}' ng-click='next()'>></a>" + "</span>" + "</div>" + "<div class='pageBar1 bar up iList' ng-hide='showMe'>" + "<a ng-repeat='item in items' ng-click='setValue(item)' ng-class='{active:showFlag2}' ng-mouseenter='showFlag2 = true' ng-mouseleave='showFlag2 = false'>{{item}}</a>" + "</div>" + "</div>",
+            templateUrl: 'tp1',
+            link: function(scope, element, attrs) {
+                scope.showFlag = true;
+                scope.showFlag2 = false;
+                scope.disabled = false;
+                scope.page = 1;
+                scope.showMe = true;
+                scope.toggle = function toggle() {
+                        var items = [];
+                        var num = scope.num;
+                        for (var i = 1; i < parseInt(num) + 1; i++) {
+                            items.push(i);
+                        }
+                        scope.items = items;
+                        debugger;
+                        scope.showMe = !scope.showMe;
+                    },
+                    scope.setValue = function setValue(item) {
+                        scope.showMe = true;
+                        scope.page = item;
+                    },
+                    scope.next = function() {
+                        scope.page < scope.num ? scope.page++ : scope.num;
+                        scope.showMe = true;
+                    },
+                    scope.prew = function() {
+                        scope.page > 1 ? scope.page-- : 1;
+                        scope.showMe = true;
+                    },
+                    scope.$watch('page', function() {
+                        scope.onPageChange({
+                            name: scope.page
+                        });
+                    });
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>
