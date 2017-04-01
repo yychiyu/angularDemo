@@ -8,10 +8,10 @@
        </br>
    controller.js </br>
       ```
-   $scope.num = 10;
-   $scope.onPageChange = function(name) {
-   // alert(name);
-   //name为当前页码
+      $scope.num = 10;
+      $scope.onPageChange = function(name) {
+       // alert(name);
+       //name为当前页码
             }; 
             ```
     
