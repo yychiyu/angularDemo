@@ -7,12 +7,14 @@
        ```
        </br>
    controller.js </br>
-   ``` javascript
-       $scope.num = 10;
-       $scope.onPageChange = function(name) {
-            // alert(name);
-            //name为当前页码
-         }; 
+      ``` javascript
+   $scope.num = 10;
+   $scope.onPageChange = function(name) {
+   // alert(name);
+   //name为当前页码
+            }; 
+            ```
+            </br>
          
           
    
