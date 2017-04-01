@@ -2,12 +2,12 @@
 # angularDemo
 ## how to use
    html </br>
-      ``` html
+      ```html
       <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
        ```
        </br>
    controller.js </br>
-      ``` javascript
+      ```javascript
    $scope.num = 10;
    $scope.onPageChange = function(name) {
    // alert(name);
