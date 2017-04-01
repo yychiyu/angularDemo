@@ -2,7 +2,9 @@
 # angularDemo
 ## how to use
    html
-      <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
+      ``` html
+      <my-page num={{num}} on-page-change="onPageChange(name)"></my-page><br>
+      ```
    controller.js
          $scope.num = 10;
          $scope.onPageChange = function(name) {
