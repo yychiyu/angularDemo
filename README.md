@@ -1,8 +1,8 @@
 # angularDemo
 ## how to use
-  *html
+  * html
       * <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
-  *controller.js
+  * controller.js
       *  $scope.num = 10;
         $scope.onPageChange = function(name) {
             // alert(name);
