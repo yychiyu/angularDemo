@@ -12,6 +12,6 @@
          $scope.onPageChange = function(name) {
             // alert(name);
             //name为当前页码
-            }; 
-            ```
+         }; 
+          
    
