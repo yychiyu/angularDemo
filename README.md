@@ -1,10 +1,10 @@
 # angularDemo
-angular demo
-how to use 
-exmaple
-   html  <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
-   in controller  
-   $scope.num = 10; //num pageCounts;
-   $scope.onPageChange = function(name) {
-       // alert(name); //name currentPage
-   };
+## how to use
+  *html
+      * <my-page num={{num}} on-page-change="onPageChange(name)"></my-page>
+  *controller.js
+      *  $scope.num = 10;
+        $scope.onPageChange = function(name) {
+            // alert(name);
+            //name为当前页码
+        };
